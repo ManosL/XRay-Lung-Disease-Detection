@@ -23,7 +23,7 @@ from graph_utils import plot_train_val, plot_confusion_matrix
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-DATASET_PATH           = '/home/manosl/Desktop/MSc Courses Projects/2nd Semester/Deep Learning/Project 1/data/COVID-19_Radiography_Dataset'
+DATASET_PATH           = '../data/COVID-19_Radiography_Dataset'
 VAL_DATASET_PERCENTAGE = 0.1
 
 
