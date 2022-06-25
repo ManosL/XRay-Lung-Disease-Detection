@@ -1,0 +1,128 @@
+The model that we will train our classifier has the following structure:
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+ResNetXRayModel                               --                        --
+├─Sequential: 1-1                             [128, 512, 1, 1]          --
+│    └─Conv2d: 2-1                            [128, 64, 64, 64]         9,408
+│    └─BatchNorm2d: 2-2                       [128, 64, 64, 64]         128
+│    └─ReLU: 2-3                              [128, 64, 64, 64]         --
+│    └─MaxPool2d: 2-4                         [128, 64, 32, 32]         --
+│    └─Sequential: 2-5                        [128, 64, 32, 32]         --
+│    │    └─BasicBlock: 3-1                   [128, 64, 32, 32]         (73,984)
+│    │    └─BasicBlock: 3-2                   [128, 64, 32, 32]         (73,984)
+│    │    └─BasicBlock: 3-3                   [128, 64, 32, 32]         (73,984)
+│    └─Sequential: 2-6                        [128, 128, 16, 16]        --
+│    │    └─BasicBlock: 3-4                   [128, 128, 16, 16]        (230,144)
+│    │    └─BasicBlock: 3-5                   [128, 128, 16, 16]        (295,424)
+│    │    └─BasicBlock: 3-6                   [128, 128, 16, 16]        (295,424)
+│    │    └─BasicBlock: 3-7                   [128, 128, 16, 16]        (295,424)
+│    └─Sequential: 2-7                        [128, 256, 8, 8]          --
+│    │    └─BasicBlock: 3-8                   [128, 256, 8, 8]          (919,040)
+│    │    └─BasicBlock: 3-9                   [128, 256, 8, 8]          (1,180,672)
+│    │    └─BasicBlock: 3-10                  [128, 256, 8, 8]          (1,180,672)
+│    │    └─BasicBlock: 3-11                  [128, 256, 8, 8]          (1,180,672)
+│    │    └─BasicBlock: 3-12                  [128, 256, 8, 8]          (1,180,672)
+│    │    └─BasicBlock: 3-13                  [128, 256, 8, 8]          (1,180,672)
+│    └─Sequential: 2-8                        [128, 512, 4, 4]          --
+│    │    └─BasicBlock: 3-14                  [128, 512, 4, 4]          3,673,088
+│    │    └─BasicBlock: 3-15                  [128, 512, 4, 4]          4,720,640
+│    │    └─BasicBlock: 3-16                  [128, 512, 4, 4]          4,720,640
+│    └─AdaptiveAvgPool2d: 2-9                 [128, 512, 1, 1]          --
+├─Sequential: 1-2                             [128, 4]                  --
+│    └─Flatten: 2-10                          [128, 512]                --
+│    └─Linear: 2-11                           [128, 4]                  2,052
+│    └─Softmax: 2-12                          [128, 4]                  --
+===============================================================================================
+Total params: 21,286,724
+Trainable params: 13,125,956
+Non-trainable params: 8,160,768
+Total mult-adds (G): 153.11
+===============================================================================================
+Input size (MB): 25.17
+Forward/backward pass size (MB): 2499.81
+Params size (MB): 85.15
+Estimated Total Size (MB): 2610.12
+===============================================================================================
+Epoch 0 Train Time Elapsed: 165.24 s Train Loss(Normalized): 0.861 Validation Loss(Normalized): 0.895
+Epoch 1 Train Time Elapsed: 121.53 s Train Loss(Normalized): 0.826 Validation Loss(Normalized): 0.883
+Epoch 2 Train Time Elapsed: 97.98 s Train Loss(Normalized): 0.812 Validation Loss(Normalized): 0.944
+Epoch 3 Train Time Elapsed: 87.84 s Train Loss(Normalized): 0.809 Validation Loss(Normalized): 0.965
+Epoch 4 Train Time Elapsed: 82.74 s Train Loss(Normalized): 0.802 Validation Loss(Normalized): 0.851
+Epoch 5 Train Time Elapsed: 79.71 s Train Loss(Normalized): 0.796 Validation Loss(Normalized): 0.85
+Epoch 6 Train Time Elapsed: 76.82 s Train Loss(Normalized): 0.794 Validation Loss(Normalized): 0.861
+Epoch 7 Train Time Elapsed: 75.67 s Train Loss(Normalized): 0.788 Validation Loss(Normalized): 0.846
+Epoch 8 Train Time Elapsed: 75.39 s Train Loss(Normalized): 0.79 Validation Loss(Normalized): 0.854
+Epoch 9 Train Time Elapsed: 74.32 s Train Loss(Normalized): 0.783 Validation Loss(Normalized): 0.827
+Epoch 10 Train Time Elapsed: 74.25 s Train Loss(Normalized): 0.783 Validation Loss(Normalized): 0.852
+Epoch 11 Train Time Elapsed: 74.14 s Train Loss(Normalized): 0.782 Validation Loss(Normalized): 0.83
+Epoch 12 Train Time Elapsed: 73.84 s Train Loss(Normalized): 0.786 Validation Loss(Normalized): 0.832
+Epoch 13 Train Time Elapsed: 73.9 s Train Loss(Normalized): 0.784 Validation Loss(Normalized): 0.836
+Epoch 14 Train Time Elapsed: 73.76 s Train Loss(Normalized): 0.782 Validation Loss(Normalized): 0.845
+Epoch 15 Train Time Elapsed: 73.63 s Train Loss(Normalized): 0.781 Validation Loss(Normalized): 0.831
+Epoch 16 Train Time Elapsed: 73.95 s Train Loss(Normalized): 0.773 Validation Loss(Normalized): 0.841
+Epoch 17 Train Time Elapsed: 73.68 s Train Loss(Normalized): 0.775 Validation Loss(Normalized): 0.834
+Epoch 18 Train Time Elapsed: 73.79 s Train Loss(Normalized): 0.775 Validation Loss(Normalized): 0.898
+Epoch 19 Train Time Elapsed: 73.62 s Train Loss(Normalized): 0.773 Validation Loss(Normalized): 0.908
+Epoch 20 Train Time Elapsed: 73.84 s Train Loss(Normalized): 0.774 Validation Loss(Normalized): 0.834
+Epoch 21 Train Time Elapsed: 73.8 s Train Loss(Normalized): 0.777 Validation Loss(Normalized): 0.928
+Epoch 22 Train Time Elapsed: 73.49 s Train Loss(Normalized): 0.78 Validation Loss(Normalized): 0.84
+Epoch 23 Train Time Elapsed: 73.73 s Train Loss(Normalized): 0.78 Validation Loss(Normalized): 0.836
+Epoch 24 Train Time Elapsed: 73.71 s Train Loss(Normalized): 0.774 Validation Loss(Normalized): 0.824
+Epoch 25 Train Time Elapsed: 73.63 s Train Loss(Normalized): 0.776 Validation Loss(Normalized): 0.846
+Epoch 26 Train Time Elapsed: 73.59 s Train Loss(Normalized): 0.774 Validation Loss(Normalized): 0.889
+Epoch 27 Train Time Elapsed: 73.75 s Train Loss(Normalized): 0.774 Validation Loss(Normalized): 0.832
+Epoch 28 Train Time Elapsed: 73.93 s Train Loss(Normalized): 0.772 Validation Loss(Normalized): 0.829
+Epoch 29 Train Time Elapsed: 73.37 s Train Loss(Normalized): 0.771 Validation Loss(Normalized): 0.831
+Epoch 30 Train Time Elapsed: 74.0 s Train Loss(Normalized): 0.771 Validation Loss(Normalized): 0.835
+Epoch 31 Train Time Elapsed: 73.54 s Train Loss(Normalized): 0.774 Validation Loss(Normalized): 0.905
+Epoch 32 Train Time Elapsed: 73.78 s Train Loss(Normalized): 0.769 Validation Loss(Normalized): 0.823
+Epoch 33 Train Time Elapsed: 73.68 s Train Loss(Normalized): 0.771 Validation Loss(Normalized): 0.853
+Epoch 34 Train Time Elapsed: 73.84 s Train Loss(Normalized): 0.77 Validation Loss(Normalized): 0.829
+Epoch 35 Train Time Elapsed: 73.83 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.826
+Epoch 36 Train Time Elapsed: 73.75 s Train Loss(Normalized): 0.769 Validation Loss(Normalized): 0.844
+Epoch 37 Train Time Elapsed: 73.78 s Train Loss(Normalized): 0.764 Validation Loss(Normalized): 0.833
+Epoch 38 Train Time Elapsed: 73.81 s Train Loss(Normalized): 0.764 Validation Loss(Normalized): 0.846
+Epoch 39 Train Time Elapsed: 73.98 s Train Loss(Normalized): 0.764 Validation Loss(Normalized): 0.833
+Epoch 40 Train Time Elapsed: 73.74 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.824
+Epoch 41 Train Time Elapsed: 74.11 s Train Loss(Normalized): 0.768 Validation Loss(Normalized): 0.836
+Epoch 42 Train Time Elapsed: 73.71 s Train Loss(Normalized): 0.763 Validation Loss(Normalized): 0.824
+Epoch 43 Train Time Elapsed: 73.54 s Train Loss(Normalized): 0.763 Validation Loss(Normalized): 0.821
+Epoch 44 Train Time Elapsed: 73.51 s Train Loss(Normalized): 0.767 Validation Loss(Normalized): 0.849
+Epoch 45 Train Time Elapsed: 73.72 s Train Loss(Normalized): 0.767 Validation Loss(Normalized): 0.838
+Epoch 46 Train Time Elapsed: 73.53 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.832
+Epoch 47 Train Time Elapsed: 73.76 s Train Loss(Normalized): 0.764 Validation Loss(Normalized): 0.834
+Epoch 48 Train Time Elapsed: 74.33 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.843
+Epoch 49 Train Time Elapsed: 73.45 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.833
+Epoch 50 Train Time Elapsed: 73.78 s Train Loss(Normalized): 0.761 Validation Loss(Normalized): 0.827
+Epoch 51 Train Time Elapsed: 73.82 s Train Loss(Normalized): 0.76 Validation Loss(Normalized): 0.833
+Epoch 52 Train Time Elapsed: 73.62 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.828
+Epoch 53 Train Time Elapsed: 73.69 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.825
+Epoch 54 Train Time Elapsed: 73.53 s Train Loss(Normalized): 0.763 Validation Loss(Normalized): 0.828
+Epoch 55 Train Time Elapsed: 73.85 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.824
+Epoch 56 Train Time Elapsed: 73.71 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.825
+Epoch 57 Train Time Elapsed: 73.92 s Train Loss(Normalized): 0.761 Validation Loss(Normalized): 0.809
+Epoch 58 Train Time Elapsed: 73.83 s Train Loss(Normalized): 0.763 Validation Loss(Normalized): 0.827
+Epoch 59 Train Time Elapsed: 73.62 s Train Loss(Normalized): 0.759 Validation Loss(Normalized): 0.886
+Epoch 60 Train Time Elapsed: 73.55 s Train Loss(Normalized): 0.761 Validation Loss(Normalized): 0.829
+Epoch 61 Train Time Elapsed: 73.81 s Train Loss(Normalized): 0.759 Validation Loss(Normalized): 0.837
+Epoch 62 Train Time Elapsed: 73.99 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.873
+Epoch 63 Train Time Elapsed: 73.55 s Train Loss(Normalized): 0.765 Validation Loss(Normalized): 0.837
+Epoch 64 Train Time Elapsed: 73.82 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.818
+Epoch 65 Train Time Elapsed: 73.97 s Train Loss(Normalized): 0.762 Validation Loss(Normalized): 0.823
+Epoch 66 Train Time Elapsed: 73.82 s Train Loss(Normalized): 0.761 Validation Loss(Normalized): 0.831
+Epoch 67 Train Time Elapsed: 73.86 s Train Loss(Normalized): 0.76 Validation Loss(Normalized): 0.816
+Epoch 68 Train Time Elapsed: 73.71 s Train Loss(Normalized): 0.759 Validation Loss(Normalized): 0.903
+Epoch 69 Train Time Elapsed: 73.9 s Train Loss(Normalized): 0.758 Validation Loss(Normalized): 0.825
+Epoch 70 Train Time Elapsed: 73.67 s Train Loss(Normalized): 0.758 Validation Loss(Normalized): 0.834
+Epoch 71 Train Time Elapsed: 73.75 s Train Loss(Normalized): 0.76 Validation Loss(Normalized): 0.814
+Epoch 72 Train Time Elapsed: 73.75 s Train Loss(Normalized): 0.758 Validation Loss(Normalized): 0.866
+Epoch 73 Train Time Elapsed: 73.52 s Train Loss(Normalized): 0.76 Validation Loss(Normalized): 0.83
+Epoch 74 Train Time Elapsed: 73.64 s Train Loss(Normalized): 0.761 Validation Loss(Normalized): 0.824
+Epoch 75 Train Time Elapsed: 73.76 s Train Loss(Normalized): 0.757 Validation Loss(Normalized): 0.822
+Epoch 76 Train Time Elapsed: 73.93 s Train Loss(Normalized): 0.756 Validation Loss(Normalized): 0.822
+Epoch 77 Train Time Elapsed: 74.49 s Train Loss(Normalized): 0.758 Validation Loss(Normalized): 0.818
+
+Accuracy on test set 0.9339310995752713
+
+Recall on test set 0.9339310995752713
